@@ -1,4 +1,4 @@
-pkgname=dwm-git
+pkgname=dwm-patched
 _pkgname=dwm
 pkgver=6.2.r0.gcb3f58a
 pkgrel=1
@@ -11,7 +11,7 @@ depends=('libx11' 'libxinerama' 'libxft')
 makedepends=('git')
 install=dwm.install
 provides=('dwm')
-conflicts=('dwm')
+conflicts=('dwm' 'dwm-git')
 source=(dwm.desktop
         "$_pkgname::git+http://git.suckless.org/dwm"
         config.h)
