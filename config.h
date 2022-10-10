@@ -37,6 +37,7 @@ static const Rule rules[] = {
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int lockfullscreen = 1;
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -73,7 +74,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_n,      spawn,          {.v = dmenunetcmd } },
-	{ 0,          XF86XK_Favorites,            spawn,          {.v = lockcmd } },
+	{ 0,          XK_F12,            spawn,          {.v = lockcmd } },
     { 0,          XF86XK_AudioLowerVolume,     spawn,          {.v = lowervolcmd} },
     { 0,          XF86XK_AudioRaiseVolume,     spawn,          {.v = raisevolcmd} },
     { 0,          XF86XK_AudioMute,            spawn,          {.v = mutecmd} },

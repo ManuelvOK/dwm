@@ -1,6 +1,6 @@
 pkgname=dwm-patched
 _pkgname=dwm
-pkgver=6.2.r0.gcb3f58a
+pkgver=6.3.r9.gd3f93c7
 pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
@@ -12,10 +12,17 @@ makedepends=('git')
 install=dwm.install
 provides=('dwm')
 conflicts=('dwm' 'dwm-git')
+_patches=('https://dwm.suckless.org/patches/statusallmons/dwm-statusallmons-6.2.diff'
+          'dwm-focusmonmouse-6.2.diff'
+          'https://dwm.suckless.org/patches/autostart/dwm-autostart-20210120-cb3f58a.diff')
 source=(dwm.desktop
         "$_pkgname::git+http://git.suckless.org/dwm"
-        config.h)
+        config.h
+        "${_patches[@]}")
 md5sums=('939f403a71b6e85261d09fc3412269ee'
+         'SKIP'
+         'SKIP'
+         'SKIP'
          'SKIP'
          'SKIP') # so you can customize config.h
 
@@ -29,6 +36,11 @@ prepare() {
   if [[ -f "$srcdir/config.h" ]]; then
     cp -fv "$srcdir/config.h" config.h
   fi
+
+  for patch in "${_patches[@]}"; do
+      echo "Applying patch $(basename $patch)..."
+      patch -Np1 -i "$srcdir/$(basename $patch)"
+  done
 }
 
 build() {
